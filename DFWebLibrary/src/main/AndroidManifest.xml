@@ -14,11 +14,29 @@
     <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission android:name="android.permission.RECORD_AUDIO" />
 
+    <queries>
+        <package android:name="com.tencent.mm" />
+        <package android:name="com.eg.android.AlipayGphone" />
+        <intent>
+            <action android:name="android.intent.action.VIEW" />
+            <data android:scheme="weixin" />
+        </intent>
+        <intent>
+            <action android:name="android.intent.action.VIEW" />
+            <data android:scheme="alipays" />
+        </intent>
+    </queries>
+
     <application android:usesCleartextTraffic="true">
 
         <activity
             android:name="com.dfweb.location.LocationActivity"
             android:exported="false" />
+
+        <activity
+            android:name="com.dongffl.dfweb.pay.DFPayWebActivity"
+            android:exported="false"
+            android:configChanges="orientation|screenSize|keyboardHidden" />
     </application>
 
 </manifest>

@@ -30,6 +30,7 @@ import com.dffl.dfbaselibrary.handlers.DFJsBridgeCallback;
 import com.dffl.dfscanlib.handler.DFScanHandler;
 import com.dfweb.location.DFLocationHandler;
 import com.dongffl.dfweb.FileType;
+import com.dongffl.dfweb.client.DFWebviewClient;
 import com.dongffl.dfweb.webivew.jsbridge.JSBridgeInterface;
 
 public class WebviewActivity extends AppCompatActivity {
@@ -87,9 +88,8 @@ public class WebviewActivity extends AppCompatActivity {
     }
 
     private void initWebviewClient() {
-//        DFWebviewChromeClient dfWebviewChromeClient = new DFWebviewChromeClient();
-//        register(dfWebviewChromeClient);
-//        webView.setWebViewClient(new DFWebviewClient());
+        // 支付逃逸：checkmweb → DFPayWebActivity；weixin:// / alipays:// → 系统拉起
+        webView.setWebViewClient(new DFWebviewClient());
     }
 
 //    private void register(DFWebviewChromeClient dfWebviewChromeClient) {
