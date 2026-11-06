@@ -224,10 +224,17 @@ public class LocationUtil {
                     listeners.get(i).onSuccessLocationListener(gpsResponseBean);
                 }
             } else {
-                //成功回调
+                // 取点始终是系统 GPS。回传经纬度由构建参数决定：默认 WGS-84，GCJ-02 包在库内转换。
+                double outLongitude = longitude;
+                double outLatitude = latitude;
+                if (BuildConfig.OUTPUT_GCJ02) {
+                    double[] gcj02 = Gcj02Converter.wgs84ToGcj02(latitude, longitude);
+                    outLatitude = gcj02[0];
+                    outLongitude = gcj02[1];
+                }
                 GPSResponseBean gpsResponseBean = new GPSResponseBean();
-                gpsResponseBean.setLongitude(longitude);
-                gpsResponseBean.setLatitude(latitude);
+                gpsResponseBean.setLongitude(outLongitude);
+                gpsResponseBean.setLatitude(outLatitude);
                 gpsResponseBean.setAddress(locationAddr);
                 for (int i = 0; i < listeners.size(); i++) {
                     listeners.get(i).onSuccessLocationListener(gpsResponseBean);
